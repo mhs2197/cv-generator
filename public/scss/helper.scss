@@ -1,0 +1,49 @@
+//generating height and width helper class
+$i: 0;
+@while $i <= 100 {
+  .vh-#{$i} {
+    height: #{$i}vh;
+  }
+  .vw-#{$i} {
+    width: #{$i}vw;
+  }
+  .h-#{$i} {
+    height: #{$i}+'%' !important;
+  }
+  .w-#{$i} {
+    width: #{$i}+'%' !important;
+  }
+  $i: $i + 25;
+}
+//display
+
+$displayArray: none block inline-block flex inline-flex unset;
+
+@each $display in $displayArray {
+  .d-#{$display} {
+    display: #{$display} !important;
+  }
+}
+// align-items
+$itemsList: start end center left right;
+
+@each $items in $itemsList {
+  .align-items-#{$items} {
+    align-items: #{$items} !important;
+  }
+  .justify-items-#{$items} {
+    justify-items: #{$items} !important;
+  }
+}
+
+//align-contents
+$contentList: center baseline space-around space-between space-evenly;
+
+@each $content in $contentList {
+  .align-content-#{$content} {
+    align-content: #{$content} !important;
+  }
+  .justify-content-#{$content} {
+    justify-content: #{$content} !important;
+  }
+}
