@@ -1,15 +1,16 @@
 ul.sidenav {
+  background: #3c3b40;
   margin: 0 !important;
   width: 300px;
   list-style-type: none;
-  position: absolute;
+  position: fixed;
   left: 0;
-  top: 0;
+  top: 57px;
   height: calc(100% + 0px);
-  border-right: 1px solid rgba(0, 0, 0, 0.14);
   padding: 0;
 }
 ul.sidenav li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
   line-height: 44px;
   list-style-type: none;
   float: none;
@@ -22,7 +23,13 @@ ul.sidenav li a {
   font-weight: 500;
   display: block;
   text-decoration: none;
-  color: black;
+  color: #fff;
+}
+ul.sidenav li.active {
+  background: #f2f3f8;
+}
+ul.sidenav li.active a {
+  color: #000;
 }
 
 .vh-0 {
@@ -207,6 +214,14 @@ ul.sidenav li a {
 
 .justify-content-space-evenly {
   justify-content: space-evenly !important;
+}
+
+body {
+  background-color: #f2f3f8;
+}
+
+.container-wrapper {
+  margin: 0 5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

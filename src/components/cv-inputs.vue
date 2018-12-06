@@ -1,195 +1,77 @@
 <template>
-<div>
-  <div class="container my-3">
-    <div class="form-row mb-3">
-      <h5 class="col-12 mb-3">Self information</h5>
-      <div class="col">
-        <div class="form-row mb-3">
-          <div class="col">
-            <label for="first-name">First name</label>
-            <input id="first-name" type="text" class="form-control">
-          </div>
-          <div class="col">
-            <label for="last-name">Last name</label>
-            <input id="last-name" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="form-row mb-3">
-          <div class="col">
-            <label for="role">Role</label>
-            <input id="role" type="text" class="form-control" placeholder="Ex: Full stack ASP.net web developer">
-          </div>
-        </div>
-        <div class="form-row mb-3">
-          <div class="col">
-            <label for="email">Email</label>
-            <input id="email" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="form-row mb-3">
-          <div class="col">
-            <label for="phone">Phone No.</label>
-            <input id="phone" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="form-row mb-3">
-          <div class="col">
-            <label for="address">Address</label>
-            <textarea id="address" type="text" class="form-control"></textarea>
-          </div>
-        </div>
-      </div>
-      <!--<div class="col">-->
-        <!--<img src="http://mindandculture.org/wordpress6/wp-content/uploads/2018/06/Fotolia_188161178_XS-4-300x300.jpg" alt="">-->
-      <!--</div>-->
-    </div>
-    <div class="form-row mb-3">
-      <h5 class="col-12 mb-3">Career Objective</h5>
-      <div class="col">
-        <textarea id="career-objective" type="text" class="form-control"></textarea>
-        <small> {{careerObjPlaceHolder}}</small>
-      </div>
-    </div>
-    <div class="mb-3">
-      <h5 class="mb-3">Experience</h5>
-      <ul class="list-group"  v-if="experiences.length>0">
-        <li class="list-group-item" v-for="experience in experiences">
-          <strong> {{ experience.designation }}</strong> - {{experience.companyName}} [{{experience.startTime}} - {{experience.endTime}}]</li>
-      </ul>
-      <div class="form-row mb-3">
-        <div class="col">
-          <label for="company-name">Company Name</label>
-          <input id="company-name" type="text" class="form-control" v-model="experienceInput.companyName">
-        </div>
-        <div class="col">
-          <label for="designation">Designation</label>
-          <input id="designation" type="text" class="form-control" v-model="experienceInput.designation">
-        </div>
-      </div>
-      <div class="form-row mb-3">
-       <div class="col">
-         <label for="startDate">Start date</label>
-         <input id="startDate" type="date" class="form-control" v-model="experienceInput.startTime">
+ <div style="padding-left: 300px;">
+   <ul class="sidenav">
+     <li v-for="inputComponent in inputComponents" :class="{'active':inputComponent.tab == activeComponent.tab}">
+       <a href="#" @click.prevent="setActiveComponent(inputComponent.tab)">{{inputComponent.name}}</a>
+     </li>
+   </ul>
+   <div class="d-flex justify-content-center">
+     <div class="container-wrapper my-3 w-50">
+       <div class="card mb-3">
+         <div class="card-body">
+           <keep-alive>
+             <component :is="activeComponent.component"></component>
+           </keep-alive>
+         </div>
        </div>
-       <div class="col">
-         <label for="endDate">End date</label>
-         <input id="endDate" type="date" class="form-control" v-model="experienceInput.endTime">
-       </div>
-      </div>
-      <button class="btn btn-primary" @click.prevent="addExperience()">Add</button>
-    </div>
-
-    <div class="mb-3">
-      <h5 class="mb-3">Skills</h5>
-      <ul class="list-group mb-3"  v-if="skills.length>0">
-        <li class="list-group-item" v-for="(skill, index) in skills">
-          {{index+1}}.  {{ skill}}
-        </li>
-      </ul>
-      <div class="form-row">
-        <div class="col-10">
-          <input type="text" class="form-control" v-model="skillInput">
-        </div>
-        <div class="col-2">
-          <button class="btn btn-primary" @click.prevent="addSkill()">Add</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <h5 class="mb-3">Projects</h5>
-      <ul class="list-group mb-3"  v-if="projects.length>0">
-        <li class="list-group-item" v-for="(project, index) in projects">
-          {{ project.title}}
-        </li>
-      </ul>
-      <div class="form-row">
-        <div class="col-12 mb-3">
-          <label for="project-title">Title</label>
-          <input id="project-title" type="text" class="form-control" v-model="projectInput.title">
-        </div>
-        <div class="col">
-          <label for="project-type">Type</label>
-          <input id="project-type" type="text" class="form-control" v-model="projectInput.type" placeholder="Ex: Personal / Academic / Professional">
-        </div>
-        <div class="col">
-          <label for="project-link">Link</label>
-          <input id="project-link" type="text" class="form-control" v-model="projectInput.link">
-        </div>
-       <div class="col-12 mt-3">
-         <button class="btn btn-primary" @click.prevent="addProject()">Add</button>
-       </div>
-      </div>
-    </div>
-  </div>
-</div>
+     </div>
+   </div>
+ </div>
 </template>
 
 <script>
-  export default {
-    name: 'cv-inputs',
-    data(){
-      return {
-        experienceInput:{
-          companyName:'',
-          designation:'',
-          startTime:'',
-          endTime:''
-        },
-        experiences:[],
-        skillInput:'',
-        skills:[],
+export default {
+  name: "cv-inputs",
+  data() {
+    return {
+      inputComponents:[
+        {tab:1,component:'selfInfoInput',name:'Basic Info'},
+        {tab:2,component:'careerObjectiveInput',name:'Career Objective'},
+        {tab:3,component:'experienceInput',name:'Experiences'},
+        {tab:4,component:'skillsInput',name:'Skills'},
+        {tab:5,component:'projectsInput',name:'Projects'},
+        {tab:6,component:'educationInput',name:'Education'},
+        {tab:7,component:'extraActivitiesInput',name:'Extracurricular Activities'},
+        {tab:8,component:'personalInfoInput',name:'Personal Info'},
+      ],
+      activeComponent:[],
 
-        projectInput:{
-          title:'',
-          type:'',
-          link:'',
-        },
-        projects:[],
-        academicResultInput:{
 
-        },
-        academicResults:[],
-        careerObjPlaceHolder:"Example: I am very passionate about computer and programming since my university life." +
-          " I dream to be an expert software engineer so that I can build professional and useful software that has business value." +
-          " I am looking for a senior software engineer position in a reputed software company that can help me to achieve my goal."
-      }
-    },
-    mounted(){
-
-    },
-    methods:{
-      addExperience(){
-        if(this.experienceInput.companyName && this.experienceInput.designation && this.experienceInput.startTime && this.experienceInput.endTime)
-        {
-          this.experiences.push(this.experienceInput);
-          this.experienceInput= {
-            companyName:'',
-            designation:'',
-            startTime:'',
-            endTime:''
-          };
-        }
+      academicResultInput: {
+        instituteName: "",
+        examOrDegreeTitle: "",
+        duration: "",
+        cgpa: ""
       },
-      addSkill(){
-        if(this.skillInput)
-        {
-          this.skills.push(this.skillInput);
-          this.skillInput = '';
-        }
-      },
-      addProject(){
-        if(this.projectInput)
-        {
-          this.projects.push(this.projectInput);
-          this.projectInput = {
-            title:'',
-            type:'',
-            link:'',
-          };
-        }
+      academicResults: [],
+
+    };
+  },
+  created(){
+    if(this.activeComponent.length==0){
+      this.setActiveComponent(1);
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+    setActiveComponent(tab){
+      this.activeComponent = this.inputComponents.find(function(inputComponent) {
+        return inputComponent.tab == tab;
+      });
+    },
+    addProject() {
+      if (this.projectInput) {
+        this.projects.push(this.projectInput);
+        this.projectInput = {
+          title: "",
+          type: "",
+          link: ""
+        };
       }
     }
-  };
+  }
+};
 </script>
 

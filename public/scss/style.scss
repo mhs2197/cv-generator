@@ -5,3 +5,11 @@
 
 //helper class
 @import 'helper';
+
+body{
+  background-color: $body-bg-color;
+}
+.container-wrapper{
+  margin: 0 5rem;
+
+}
