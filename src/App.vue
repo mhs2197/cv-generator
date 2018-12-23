@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ul class="nav nav-pills p-2 border-bottom" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills p-2 border-bottom bg-white" id="pills-tab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" role="tab" aria-controls="pills-home" href="#" @click.prevent="loadComponent('welcomePage')">Page 1</a>
       </li>

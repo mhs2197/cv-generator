@@ -7,10 +7,10 @@ ul
     margin: 0 !important;
     width:300px;
     list-style-type: none;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 57px;
-    height: calc(100% + 0px);
+    height: calc(100% - 57px);
     //border-right: 1px solid rgba(0,0,0,0.14);
     padding: 0;
     li

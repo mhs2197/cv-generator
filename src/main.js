@@ -18,6 +18,7 @@ import careerObjectiveVue from './components/userInfoInputs/careerObjective.vue'
 import experienceVue from './components/userInfoInputs/experience.vue';
 import skillsVue from './components/userInfoInputs/skills.vue';
 import projectsVue from './components/userInfoInputs/projects.vue';
+import educationVue from './components/userInfoInputs/education.vue';
 
 
 
@@ -28,6 +29,7 @@ Vue.component('careerObjectiveInput', careerObjectiveVue);
 Vue.component('experienceInput', experienceVue);
 Vue.component('skillsInput', skillsVue);
 Vue.component('projectsInput', projectsVue);
+Vue.component('educationInput', educationVue);
 
 Vue.config.productionTip = false;
 

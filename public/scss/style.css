@@ -3,10 +3,10 @@ ul.sidenav {
   margin: 0 !important;
   width: 300px;
   list-style-type: none;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 57px;
-  height: calc(100% + 0px);
+  height: calc(100% - 57px);
   padding: 0;
 }
 ul.sidenav li {
@@ -222,6 +222,10 @@ body {
 
 .container-wrapper {
   margin: 0 5rem;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.1rem 0.25rem 1px rgba(0, 0, 0, 0.075) !important;
 }
 
 /*# sourceMappingURL=style.css.map */

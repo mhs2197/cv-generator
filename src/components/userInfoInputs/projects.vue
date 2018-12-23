@@ -1,8 +1,11 @@
 <template>
-  <div class="mb-3">
+  <div>
     <h5 class="mb-3">Projects</h5>
     <ul class="list-group mb-3" v-if="projects.length>0">
-      <li class="list-group-item" v-for="(project, index) in projects">{{ project.title}}</li>
+      <li class="list-group-item" v-for="(project, index) in projects">
+        {{ index+1 +'. '+ project.title +' [ '+ project.type + ' ] - ' + project.link}}
+        <a href="#" class="float-right btn btn-outline-danger px-2 py-0"  @click.prevent="removeProject(index)">x</a>
+      </li>
     </ul>
     <div class="form-row">
       <div class="col-12 mb-3">
@@ -58,6 +61,10 @@
             link: ""
           };
         }
+      },
+      removeProject(index)
+      {
+        this.projects.splice(index,1);
       }
     }
   };

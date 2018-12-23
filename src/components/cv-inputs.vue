@@ -7,7 +7,7 @@
    </ul>
    <div class="d-flex justify-content-center">
      <div class="container-wrapper my-3 w-50">
-       <div class="card mb-3">
+       <div class="card mb-3 border-0">
          <div class="card-body">
            <keep-alive>
              <component :is="activeComponent.component"></component>
@@ -36,15 +36,6 @@ export default {
       ],
       activeComponent:[],
 
-
-      academicResultInput: {
-        instituteName: "",
-        examOrDegreeTitle: "",
-        duration: "",
-        cgpa: ""
-      },
-      academicResults: [],
-
     };
   },
   created(){
@@ -61,16 +52,6 @@ export default {
         return inputComponent.tab == tab;
       });
     },
-    addProject() {
-      if (this.projectInput) {
-        this.projects.push(this.projectInput);
-        this.projectInput = {
-          title: "",
-          type: "",
-          link: ""
-        };
-      }
-    }
   }
 };
 </script>
